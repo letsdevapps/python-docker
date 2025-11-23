@@ -1,3 +1,14 @@
 venv/
 .project
 .pydevproject
+
+# Ignorar a pasta de cache gerada pelo Python
+__pycache__/
+
+# Ignorar arquivos .pyc gerados
+*.pyc
+
+# Ignorar outros arquivos comuns
+*.log
+*.env
+

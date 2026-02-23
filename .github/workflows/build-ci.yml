@@ -28,3 +28,26 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      # 4. Rodar testes (pytest)
+      - name: Run tests
+        run: pytest
+
+      # 5. Configurar Docker Buildx
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # 6. Build da imagem Docker
+      - name: Build Docker image
+        run: |
+          docker build -t python-docker .
+
+      # 7. Rodar container
+      - name: Run Docker container
+        run: |
+          docker run -d -p 8000:8000 --name python-docker python-docker
+          sleep 5
+
+      # 8. Testar container
+      # - name: Test container
+      #   run: curl http://localhost:8000
